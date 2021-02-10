@@ -102,15 +102,78 @@ const data = [
 
     <span class="expandButton">+</span>
   </div>
+*/
+function articleMaker(article){
+  let element = document.createElement('div')
+  element.className = 'article';
 
+  let title = document.createElement('h2');
+  element.appendChild(title);
+  title.textContent = article.title;
+
+  let date = document.createElement('p');
+  element.appendChild(date);
+  date.className = 'date';
+  date.textContent = article.date;
+
+  const orders = ['first', 'second', 'third'];
+  const paragraphs = orders.map(order => {
+    let p = document.createElement('p');
+    p.textContent = article[order + 'Paragraph'];
+    element.appendChild(p);
+    return p;
+  });
+
+  let span = document.createElement('span');
+  element.appendChild(span);
+  span.className = 'expandButton';
+  span.textContent = '+';
+  
+  /*
   Step 2: Still inside `articleMaker`, add an event listener to the span.expandButton.
   This listener should toggle the class 'article-open' on div.article.
+  */
+  span.addEventListener('click', e => {
+    element.className = element.className === 'article-open' ? 'article' : 'article-open';
+  })
 
+  /*
   Step 3: Don't forget to return something from your function!
+  */
+  return element;
+}
 
+  /*
   Step 4: Outside your function now, loop over the data. At each iteration you'll use your component
   to create a div.article element and append it to the DOM inside div.articles (see index.html).
+  */
+  let articles = document.querySelector('.articles');
+  
 
+  /*
   Step 5: Try adding new article object to the data array. Make sure it is in the same format as the others.
   Refresh the page to see the new article.
 */
+data.push({
+  title: 'No one likes Stat Wars Anymore',
+  date: 'Nov 5th, 2021',
+  firstParagraph: `Lucas ipsum dolor sit amet ben twi'lek padmé darth darth darth moff hutt organa twi'lek. Ben amidala secura skywalker lando
+      moff wicket tatooine luke.Solo wampa wampa calrissian yoda moff.Darth grievous darth gonk darth hutt.Darth baba skywalker
+      watto fett jango maul han.Mon ewok sidious sidious lando kenobi grievous gamorrean solo.Yoda wedge utapau darth calamari.
+      Hutt calamari darth jabba.Darth dooku amidala organa moff.Boba darth binks solo hutt skywalker dantooine skywalker.Qui - gonn
+      jar twi'lek jinn leia jango skywalker mon.`,
+
+  secondParagraph: `Grievous fett calamari anakin skywalker hutt.Alderaan darth kenobi darth r2- d2
+      windu mothma.Sidious darth calamari moff.Wampa mothma sith wedge solo mara.Darth gonk maul sith moff chewbacca palpatine
+      mace amidala.C - 3po solo skywalker anakin yoda leia.Maul wampa bespin watto jade ewok darth jabba.Lando dantooine moff
+      k - 3po dantooine luke.Fisto mandalore darth wedge c - 3p0 ahsoka.Secura moff palpatine fett.Anakin sith darth darth.Moff
+      solo leia ben ponda jade.Binks jango aayla skywalker skywalker cade.Mustafar darth ventress anakin watto.Yavin jawa sebulba
+      owen jinn tatooine sith organa.`,
+
+  thirdParagraph: `Dagobah hutt jawa leia calamari ventress skywalker yoda. Binks wicket hutt coruscant sidious
+      naboo ackbar tatooine. Hutt lars padmé darth. Maul solo darth darth jabba qui-gon chewbacca darth maul. Moff baba wicket
+      han. C-3po antilles moff qui-gon ahsoka aayla dooku amidala. Palpatine droid amidala droid k-3po twi'lek padmé wookiee. Leia
+      moff calamari mon obi-wan. Solo grievous lando coruscant. Jinn darth palpatine obi-wan mon.`
+})
+
+data.forEach(article => articles.appendChild(articleMaker(article)));
