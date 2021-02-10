@@ -134,7 +134,7 @@ function articleMaker(article){
   This listener should toggle the class 'article-open' on div.article.
   */
   span.addEventListener('click', e => {
-    element.className = element.className === 'article-open' ? 'article' : 'article-open';
+    element.classList.toggle('article-open')
   })
 
   /*

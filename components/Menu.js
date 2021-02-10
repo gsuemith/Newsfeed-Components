@@ -39,6 +39,7 @@ function menuMaker(items){
   items.forEach(item => {
     let menuItem = document.createElement('li');
     menuItem.textContent = item;
+    menuItem.style.cursor = 'pointer';
     menu.children[0].appendChild(menuItem);
   })
 
@@ -50,4 +51,5 @@ function menuMaker(items){
   return menu
 }
 
-console.log(menuMaker(menuItems));
+let header = document.querySelector('.header');
+header.prepend(menuMaker(menuItems));

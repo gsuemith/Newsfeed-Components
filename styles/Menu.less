@@ -25,6 +25,13 @@
   text-align: center;
 }
 
+@keyframes fromLeft {
+  from {transform: translateX(-350px)}
+  to {transform: translateX(0)}
+}
+
 .menu--open {
   display: block;
+  animation-name: fromLeft;
+  animation-duration: .4s;
 }
